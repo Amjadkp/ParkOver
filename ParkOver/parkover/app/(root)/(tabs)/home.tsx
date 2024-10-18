@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, useUser } from '@clerk/clerk-expo'
 import { Link } from 'expo-router'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
+import Map from '../../../components/Map' 
 
 export default function Page() {
   const { user } = useUser()
@@ -8,7 +9,7 @@ export default function Page() {
   return (
     <View>
       <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
+      <Map/>
       </SignedIn>
       <SignedOut>
         <Link href="/sign-in">

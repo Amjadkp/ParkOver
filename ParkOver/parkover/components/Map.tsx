@@ -9,7 +9,7 @@ import { UserLocationContext } from './UserLocationContext';
 import MapStyle from './MapStyle.json';
 
 const Map = () => {
-  const { mapRegion, setMapRegion } = useContext(UserLocationContext) || { mapRegion: { latitude: 0, longitude: 0 }, setMapRegion: () => {} };
+  const { mapRegion, setMapRegion } = useContext(UserLocationContext) || { mapRegion: { latitude: 0, longitude: 0, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, setMapRegion: () => {} };
   console.log(mapRegion)
   const [placeList,setPlaceList]=useState([]);
   // const { location, setLocation } = useContext(UserLocationContext) || { location: { latitude: 0, longitude: 0 }, setLocation: () => {} };
@@ -39,7 +39,7 @@ const Map = () => {
         <SearchBar searchedLocation={(mapRegion: any) => console.log(mapRegion)} />
       </View>
       <MapView style={styles.map}
-        // region={mapRegion}
+        region={mapRegion}
         customMapStyle={MapStyle}>
         <Marker coordinate={mapRegion} title="Location" description=""><Image source={require('../assets/icons/marker.png')}
           style={{ height: 50, width: 50 }}

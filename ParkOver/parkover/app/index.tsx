@@ -1,5 +1,6 @@
 import { Redirect } from "expo-router";
 import { useAuth  } from "@clerk/clerk-expo";
+import React from "react";
 // import {Text, View} from "react-native";
 // import { SafeAreaView } from "react-native-safe-area-context";
 

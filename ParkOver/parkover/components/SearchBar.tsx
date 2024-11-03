@@ -30,7 +30,7 @@ export default function SearchBar({ searchedLocation }: SearchBarProps) {
         searchedLocation(details?.geometry?.location);
       }}  
       query={{
-        key: 'Your Api Key',
+        key: '',
         language: 'en',
       }}
     />

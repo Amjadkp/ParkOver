@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, View, Button, Text, Image } from 'react-native';
-import * as Location from 'expo-location';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import SearchBar from '@/components/SearchBar';
 import PlaceListview from './PlaceListView';
@@ -10,30 +9,11 @@ import { UserLocationContext } from './UserLocationContext';
 import MapStyle from './MapStyle.json';
 
 const Map = () => {
-  const [mapRegion, setMapRegion] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  });
-
-  const userLocation = async () => {
-    let status = await Location.requestForegroundPermissionsAsync();
-    if (status.status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
-    }
-    let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
-    setMapRegion({
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    })
-  }
-
+  const { mapRegion, setMapRegion } = useContext(UserLocationContext) || { mapRegion: { latitude: 0, longitude: 0 }, setMapRegion: () => {} };
+  console.log(mapRegion)
   const [placeList,setPlaceList]=useState([]);
-  const { location, setLocation } = useContext(UserLocationContext) || { location: { latitude: 0, longitude: 0 }, setLocation: () => {} };
-  useEffect(()=>{location&&GetNearByPlace();},[location])
+  // const { location, setLocation } = useContext(UserLocationContext) || { location: { latitude: 0, longitude: 0 }, setLocation: () => {} };
+  useEffect(()=>{mapRegion&&GetNearByPlace();},[mapRegion])
   const GetNearByPlace=()=>{
     const data = {
       "includedTypes": ["parking"],
@@ -41,8 +21,8 @@ const Map = () => {
       "locationRestriction": {
         "circle": {
           "center": {
-            "latitude": location?.latitude,
-            "longitude": location?.longitude},
+            "latitude": mapRegion?.latitude,
+            "longitude": mapRegion?.longitude},
           "radius": 5000.0
         }
       }
@@ -52,16 +32,14 @@ const Map = () => {
     })
     }
 
-  useEffect(() => {
-    userLocation();
-  }, []);
-  return (
+  
+  return mapRegion?.latitude&&(
     <View>
       <View style={styles.headerContainer}>
-        <SearchBar searchedLocation={(location: any) => console.log(location)} />
+        <SearchBar searchedLocation={(mapRegion: any) => console.log(mapRegion)} />
       </View>
       <MapView style={styles.map}
-        region={mapRegion}
+        // region={mapRegion}
         customMapStyle={MapStyle}>
         <Marker coordinate={mapRegion} title="Location" description=""><Image source={require('../assets/icons/marker.png')}
           style={{ height: 50, width: 50 }}
@@ -70,7 +48,7 @@ const Map = () => {
       <View style={styles.placeListContainer}>
         {placeList&&<PlaceListview placeList={placeList}/>}
       </View>
-      <Button title="Get Location" onPress={userLocation} />
+      {/* <Button title="Get Location" onPress={userLocation} /> */}
 
     </View>
   )

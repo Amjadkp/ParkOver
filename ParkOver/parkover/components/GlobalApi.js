@@ -6,10 +6,10 @@ const config = {
     headers: {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': API_KEY,
-        "X-Goog-FieldMask":['places.displayName', 'places.formattedAddress', 'places.location', 'places.parkingOptions','places.photos', 'places.shortFormattedAddress']
+        "X-Goog-FieldMask": ['places.displayName', 'places.formattedAddress', 'places.location', 'places.parkingOptions', 'places.photos', 'places.shortFormattedAddress']
     }
 }
 
 const NewNearByPlace = (data) => axios.post(BASE_URL, data, config);
 
-export default {NewNearByPlace};
+export default { NewNearByPlace, API_KEY };

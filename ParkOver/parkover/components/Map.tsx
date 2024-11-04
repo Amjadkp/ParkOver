@@ -10,11 +10,9 @@ import MapStyle from './MapStyle.json';
 
 const Map = () => {
   const { mapRegion, setMapRegion } = useContext(UserLocationContext) || { mapRegion: { latitude: 0, longitude: 0, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, setMapRegion: () => {} };
-  console.log(mapRegion)
-  const [placeList,setPlaceList]=useState([]);
-  // const { location, setLocation } = useContext(UserLocationContext) || { location: { latitude: 0, longitude: 0 }, setLocation: () => {} };
-  useEffect(()=>{mapRegion&&GetNearByPlace();},[mapRegion])
-  const GetNearByPlace=()=>{
+
+  const [placeList, setPlaceList] = useState([]);
+  const GetNearByPlace = () => {
     const data = {
       "includedTypes": ["parking"],
       "maxResultCount": 10,
@@ -22,16 +20,23 @@ const Map = () => {
         "circle": {
           "center": {
             "latitude": mapRegion?.latitude,
-            "longitude": mapRegion?.longitude},
+            "longitude": mapRegion?.longitude
+          },
           "radius": 5000.0
         }
       }
     }
-    GlobalApi.NewNearByPlace(data).then((res: any)=>{console.log(res.data);
-      setPlaceList(res.data?.places);
-    })
-    }
+    GlobalApi.NewNearByPlace(data)
+      .then(resp => {
+        // console.log(JSON.stringify(resp.data));
+        setPlaceList(resp.data?.places);
+      })
+      .catch(error => {
+        console.error("Error fetching nearby places:", error);
+      });
+  }
 
+  useEffect(() => { mapRegion && GetNearByPlace() }, [mapRegion])
   
   return mapRegion?.latitude&&(
     <View>
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
   },
   placeListContainer: {
     position: 'absolute',
-    bottom: 110,
+    bottom: 0,
     zIndex: 10,
     width: '100%'
   }

@@ -14,5 +14,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "components/UserLocationContext.tsx", "app/(root)/(tabs)/home.tsx", "components/GlobalApi.js"  ]
+, "components/UserLocationContext.tsx", "app/(root)/(tabs)/home.tsx", "components/GlobalApi.ts"  ]
 }

@@ -1,8 +1,8 @@
 import { SignedIn, SignedOut, useUser } from '@clerk/clerk-expo'
 import { Link } from 'expo-router'
 import { Text, View, StyleSheet } from 'react-native'
-import Map from '../../../components/Map' 
-import { useContext, useEffect, useState } from 'react'
+import Map from '../../../components/Map'
+import { useEffect, useState } from 'react'
 import GlobalApi from '../../../components/GlobalApi'
 import { UserLocationContext } from '../../../components/UserLocationContext'
 import React from 'react'
@@ -32,7 +32,7 @@ export default function Page() {
       longitudeDelta: 0.0421,
     })
   }
-  
+
   useEffect(() => {
     userLocation();
   }, []);
@@ -40,21 +40,21 @@ export default function Page() {
   return (
     <View>
       <SignedIn>
-      <UserLocationContext.Provider value={{mapRegion, setMapRegion}}>
-        <Map />
+        <UserLocationContext.Provider value={{ mapRegion, setMapRegion }}>
+          <Map />
         </UserLocationContext.Provider>
       </SignedIn>
-      
-      <SignedOut>
-          <Link href="/sign-in">
-            <Text>Sign In</Text>
-          </Link>
-          <Link href="/sign-up">
-            <Text>Sign Up</Text>
-          </Link>
-        </SignedOut>
 
-    </View>
+      <SignedOut>
+        <Link href="/sign-in">
+          <Text>Sign In</Text>
+        </Link>
+        <Link href="/sign-up">
+          <Text>Sign Up</Text>
+        </Link>
+      </SignedOut>
+
+    </View >
   )
 }
 

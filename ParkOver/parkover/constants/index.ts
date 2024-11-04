@@ -94,7 +94,7 @@ export const onboarding = [
     //     description:
     //         "Enter your destination, sit back, and let us take care of the rest.",
     //     image: images.onboarding3,
-    // },
+    // }, 
 ];
 
 export const data = {

@@ -20,7 +20,11 @@
     "@expo-google-fonts/outfit": "^0.2.3",
     "@expo/metro-runtime": "~3.2.3",
     "@expo/vector-icons": "^14.0.2",
+<<<<<<< HEAD
     "@react-native-community/cli": "^14.1.1",
+=======
+    "@neondatabase/serverless": "^0.10.1",
+>>>>>>> 43a93f81a99c4e26dd1b3170f5c73a056dd68941
     "@react-navigation/native": "^6.0.2",
     "axios": "^1.7.7",
     "expo": "~51.0.36",

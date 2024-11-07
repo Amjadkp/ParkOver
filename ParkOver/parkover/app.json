@@ -27,7 +27,6 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-<<<<<<< HEAD
       "expo-router",
       [
         "expo-location",
@@ -35,15 +34,13 @@
           "locationAlwaysAndWhenInUsePermission": "Allow ParkOver to use your location."
         }
       ],
-      "expo-font"
-=======
+      "expo-font",
       [
         "expo-router",
         {
           "origin": "https://parkover.com/"
         }
       ]
->>>>>>> 43a93f81a99c4e26dd1b3170f5c73a056dd68941
     ],
     "experiments": {
       "typedRoutes": true

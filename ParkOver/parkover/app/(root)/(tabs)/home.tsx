@@ -41,7 +41,7 @@ export default function Page() {
     <View>
       <SignedIn>
         <UserLocationContext.Provider value={{ mapRegion, setMapRegion }}>
-          <Map />
+          <Map/>
         </UserLocationContext.Provider>
       </SignedIn>
 

@@ -7,9 +7,10 @@ import PlaceListview from './PlaceListView';
 import GlobalApi from './GlobalApi';
 import { UserLocationContext } from './UserLocationContext';
 import MapStyle from './MapStyle.json';
+import Markers from './Markers';
 
 const Map = () => {
-  const { mapRegion, setMapRegion } = useContext(UserLocationContext) || { mapRegion: { latitude: 0, longitude: 0, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, setMapRegion: () => {} };
+  const { mapRegion, setMapRegion } = useContext(UserLocationContext) || { mapRegion: { latitude: 0, longitude: 0, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, setMapRegion: () => { } };
 
   const [placeList, setPlaceList] = useState([]);
   const GetNearByPlace = () => {
@@ -37,8 +38,8 @@ const Map = () => {
   }
 
   useEffect(() => { mapRegion && GetNearByPlace() }, [mapRegion])
-  
-  return mapRegion?.latitude&&(
+
+  return mapRegion?.latitude && (
     <View>
       <View style={styles.headerContainer}>
         <SearchBar searchedLocation={(mapRegion: any) => console.log(mapRegion)} />
@@ -46,12 +47,12 @@ const Map = () => {
       <MapView style={styles.map}
         region={mapRegion}
         customMapStyle={MapStyle}>
-        <Marker coordinate={mapRegion} title="Location" description=""><Image source={require('../assets/icons/marker.png')}
-          style={{ height: 50, width: 50 }}
-        ></Image></Marker>
+        {mapRegion ? <Marker coordinate={mapRegion} title="Location" description=""><Image source={require('../assets/icons/marker.png')}
+          style={{ height: 50, width: 50 }}></Image></Marker> : null}
+        {placeList && placeList.map((item, index) => (<Markers key={index} place={item} />))}
       </MapView>
       <View style={styles.placeListContainer}>
-        {placeList&&<PlaceListview placeList={placeList}/>}
+        {placeList && <PlaceListview placeList={placeList} />}
       </View>
       {/* <Button title="Get Location" onPress={userLocation} /> */}
 

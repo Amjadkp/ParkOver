@@ -74,10 +74,8 @@ export const icons = {
 export const onboarding = [
     {
         id: 1,
-        // title: "The perfect ride is just a tap away!",
         title: " We shall safekeep your car 🧤 ",
         description:
-            // "Your journey begins with Ryde. Find your ideal ride effortlessly.",
             "⚡ Easy ",
         image: images.onboarding1,
     },
@@ -88,13 +86,6 @@ export const onboarding = [
             "Car Parking",
         image: images.onboarding2,
     },
-    // {
-    //     id: 3,
-    //     title: "Your ride, your way. Let's go!",
-    //     description:
-    //         "Enter your destination, sit back, and let us take care of the rest.",
-    //     image: images.onboarding3,
-    // },
 ];
 
 export const data = {

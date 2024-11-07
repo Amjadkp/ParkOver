@@ -17,6 +17,8 @@ module.exports = function (api) {
         {
           alias: {
             "@assets": "./ParkOver/parkover/assets", // Add your alias for assets
+            "presets": ["module:metro-react-native-babel-preset"],
+            "plugins": ["@babel/plugin-transform-runtime"]          
           },
         },
       ],
